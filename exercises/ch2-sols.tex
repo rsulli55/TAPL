@@ -20,7 +20,7 @@ Show that R' is the reflexive closure of $R$.
         \item[Case 2: $z \notin R$] Then, $z = (s, s)$ for some $s \in S$.  Because $T$ is reflexive, $z = (s, s) \in T$.  
     \end{description}
 
-    In either case we have show $z \in T$, hence $R' \subseteq T$. So, $R'$ is the smallest reflexive relation containing $R$ i.e. is it the transitive closure.
+    In either case we have show $z \in T$, hence $R' \subseteq T$. So, $R'$ is the smallest reflexive relation containing $R$ i.e. is it the reflexive closure.
 \end{proof}
 
 \subsubsection*{Exercise 2.2.7}
@@ -39,30 +39,30 @@ transitive relation containing $R$.  We show by induction that $R_i \subseteq T$
 \begin{description}
     \item[Base case:] $R_0 = R \subseteq T$ by assumption.
     \item[Inductive step:] Assume that we have shown $R_i \subseteq T$.  We show that $R_{i+1} \subseteq T$.  Let $z = (s, u) \in R_{i+1}$.  By the definition of $R_{i+1}$, either $z \in R_i$ or there is a 
-$t \in S$ such that $(s, t) \in R_i$ and $(t, u) \in R_i$.  In the former case, $z \in T$ by the IH.  In the later case,
+$t \in S$ such that $(s, t) \in R_i$ and $(t, u) \in R_i$.  In the former case, $z \in T$ by the IH.  In the latter case,
 $(s, t) \in T$ and $(t, u) \in T$ by the IH.  Because $T$ is transitive, it follows that $z = (s, u) \in T$.  Hence, $R_{i+1} \subseteq T$.
 \end{description}
-By induction, $R_i \subseteq T$ and it follows that $R^+ \subseteq T$ which proves $R^+$ is the transitive closure.
+By induction, $R_i \subseteq T$ and it follows that $R^+ \subseteq T$ which proves $R^+$ is the transitive closure of $R$.
 \end{proof}
 
 
 \subsubsection*{Exercise 2.2.8}
 Suppose $R$ is a binary relation on a set $S$ and $P$ is a predicate on $S$ that is preserved by $R$.  Show that $P$ is also preserved by $R*$.
 \begin{proof}
-Note that $R^*$, the reflexive and transitive closure of $R$ can be obtained as $R^* = (R')$.  Hence, $R^*$ can be formed as 
+Note that $R^*$, the reflexive and transitive closure of $R$ can be obtained as $R^* = (R')^+$.  Hence, $R^*$ can be formed as 
 \begin{align*}
     R_0 &= R'    \\
     R_{i+1} &= R_i \cup \set{(s, u)}{\text{for some $t$, $(s, t) \in R_i$ and $(t, u) \in R_i$}} \\
     R^* &= \bigcup_i R_i
 \end{align*}
-We will show that $P$ is preserved by $R_i$ for all $i \in bN$ by induction.
+We will show that $P$ is preserved by $R_i$ for all $i \in \nn$ by induction.
 \begin{description}
     \item[Base case:] Let $z = (s, u) \in R_0 = R'$ and suppose that $P(s)$ holds.  Then, either $z \in R$ or $u = s$.  If $z \in R$ then $P(u)$ holds because $R$ preserved $P$.
 If $u = s$, then $P(u)$ holds vacuously.
 \item[Inductive step:] Assume that $P$ is preserved by $R_i$.  We will show that $R_{i+1}$ 
     preserves $P$. Let $z = (s, u) \in R_{i+1}$ and suppose that $P(s)$ holds.  By the definition of 
     $R_{i+1}$ either $z \in R_i$ or there is a $t \in S$ such that $(s, t) \in R_i$ and $(t, u) \in R_i$.
-    In the former case, $P(u)$ holds by the IH.  In the latter case, because $R_i$ preserves $P$ and $P(s)$ holds we first have $P(t)$ holds which implies that $P(u)$ holds.  Hence, $P$ is preserved by $R_{i+1}$.
+    In the former case, $P(u)$ holds by the IH.  In the latter case, because $R_i$ preserves $P$ and $P(s)$ holds we first conclude $P(t)$ holds. This in turn implies that $P(u)$ holds by the IH.  Hence, $P$ is preserved by $R_{i+1}$.
 \end{description}
 By induction, $P$ is preserved by $R_i$ for all $i \in \nn$.  Because $R^* = \bigcup_i R_i$ it follows that
 $P$ is preserved by $R^*$.
